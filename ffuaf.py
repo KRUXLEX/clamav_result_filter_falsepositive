@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import sys
 import argparse
 
 def process_filter_line(line):
@@ -53,6 +54,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Call the function to remove lines
-    removed_lines_count = remove_lines(args.input_file, args.filter_file, args.output_file)
+    if len(sys.argv)==1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
+    else:
+        removed_lines_count = remove_lines(args.input_file, args.filter_file, args.output_file)
 
     print(f"Operation completed successfully. Removed {removed_lines_count} lines.")
